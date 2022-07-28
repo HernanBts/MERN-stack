@@ -5,8 +5,8 @@ export const getTasks = async (req, res) => {
         const [result] = await pool.query(
             'SELECT * FROM tasks ORDER BY createdAt ASC'
             );
-        res.json(result);
-        res.send('getting tasks...');
+        return res.json(result);
+        // res.send('getting tasks...');
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -20,8 +20,8 @@ export const getTask = async (req, res) => {
         if (result.length === 0) 
             return res.status(404).json({ message: "Task not found."});
 
-        res.json(result[0]);
-        res.send('getting task...');
+        return res.json(result[0]);
+        //res.send('getting task...');
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -33,12 +33,12 @@ export const createTask = async (req, res) => {
         const [result] = await pool.query(
             'INSERT INTO tasks(title, description) VALUES (?, ?)',
             [title, description]);
-        res.json({
+        return res.json({
             id: result.insertId,
             title,
             description
         });
-        res.send('creating task...');
+        //res.send('creating task...');
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -52,8 +52,8 @@ export const updateTask = async (req, res) => {
             );
         if (result.length === 0) 
             return res.status(404).json({ message: "Task not found."});    
-        res.json(result[0]);
-        res.send('updateing task...');
+        return res.json(result[0]);
+        //res.send('updateing task...');
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }

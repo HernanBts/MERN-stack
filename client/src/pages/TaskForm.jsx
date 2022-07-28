@@ -20,7 +20,7 @@ function TasksForm() {
             }
           }}
         >
-          {({ handleChange, handleSubmit, values, inSubmitting }) => (
+          {({ handleChange, handleSubmit, values, isSubmitting }) => (
             <form onSubmit={handleSubmit}>
               <label>Title</label>
               <input
@@ -39,7 +39,7 @@ function TasksForm() {
                 value={values.description}
               />
               <button type="submit" disabled={isSubmitting}>
-                {isSubmittiong ? "Saving..." : "Save"}
+                {isSubmitting ? "Saving..." : "Save"}
               </button>
             </form>
           )}
