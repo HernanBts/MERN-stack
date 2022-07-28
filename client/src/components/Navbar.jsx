@@ -4,7 +4,6 @@ function Navbar() {
     return (
         <div>
             <h1>React with mySql</h1>
-
             <ul>
                 <li>
                     <Link to="/">Home</Link>
