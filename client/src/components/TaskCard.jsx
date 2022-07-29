@@ -3,7 +3,8 @@ import {deleteTaskRequest} from '../api/tasks.api'
 function TaskCard( {task} ) {
     const handleDeleteTask = async (taskId) => {
         try {
-            await deleteTaskRequest(taskId)
+            const response = await deleteTaskRequest(taskId)
+            return console.log(response)
         } catch (error) {
             console.log(error)
         }

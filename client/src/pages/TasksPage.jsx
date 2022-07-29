@@ -1,17 +1,14 @@
-import {useEffect, useState} from 'react'
-import { getTasksRequest } from '../api/tasks.api'
+import {useEffect} from 'react'
+import {useTasks} from '../context/TaskContext'
 import TaskCard from '../components/TaskCard'
 
 function TasksPage() {
-    const [tasks, setTasks] = useState([])
-
+    const { tasks, loadTasks } = useTasks();
+  
     useEffect(() => {
-        async function loadTasks() {
-            const respose = await getTasksRequest()
-            setTasks(respose.data)
-        }
-        loadTasks()
-    })
+      loadTasks();
+    }, [])
+    
     function renderTasks() {
         if (tasks.length === 0) return <h2>You dont have tasks...</h2>
         return tasks.map((task) => <TaskCard task={task} key={task.id} />);
