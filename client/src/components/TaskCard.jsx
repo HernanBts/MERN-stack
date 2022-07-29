@@ -1,21 +1,16 @@
-import {deleteTaskRequest} from '../api/tasks.api'
+import { useTasks } from '../context/TaskProvider'
 
 function TaskCard( {task} ) {
-    const handleDeleteTask = async (taskId) => {
-        try {
-            const response = await deleteTaskRequest(taskId)
-            return console.log(response)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    const {deleteTask} = useTasks();
+
+
     return (
       <div>
         <h2>{task.title}</h2>
         <p>{task.description}</p>
         <span>{task.done ? "✔️" : "❌"}</span>
         <span>{task.createdAt}</span>
-        <button onClick={() => handleDeleteTask(task.id)}>delete</button>
+        <button onClick={() => deleteTask(task.id)}>delete</button>
         <button>edit</button>
       </div>
     )

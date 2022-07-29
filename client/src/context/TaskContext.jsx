@@ -1,4 +1,3 @@
-import { createContext, useContext, useState} from "react";
-import { getTasksRequest } from '../api/tasks.api'
+import { createContext } from "react";
 
 export const TaskContext = createContext();
