@@ -16,8 +16,10 @@ function TasksPage() {
 
     return (
         <div>
-            <h1>My Tasks</h1>
-            {renderTasks()}
+            <h1 className="text-4xl text-white font-bold text-center py-4">My Tasks</h1>
+            <div className="grid grid-cols-3 gap-2">
+                {renderTasks()}
+            </div>
         </div>
     )
 }

@@ -28,7 +28,7 @@ function TasksForm() {
 
   return (
     <div>
-      <h1> { params.id ? "Edit Task:" : "Create Task:" } </h1>
+      <h1 className="text-center text-white font-bold text-4xl p-2"> { params.id ? "Edit Task" : "Create Task" } </h1>
       <Formik
         initialValues={task}
         enableReinitialize={true}
@@ -47,24 +47,27 @@ function TasksForm() {
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting })=> (
-          <Form onSubmit={handleSubmit}>
-            <label>Title</label>
+          <Form onSubmit={handleSubmit} className="bg-zinc-800 rounded-md p-4 text-whitebg-zinc-800 rounded-md py-4 text-white
+            max-w-sm rounded-md mx-auto">
+            <label className="block">Title</label>
             <input
               type="text"
               name="title"
+              className="px-2 py-2 rounded-sm w-full text-black"
               placeholder="Write a Title..."
               onChange={handleChange}
               value={values.title}
             />
-            <label>Description</label>
+            <label className="block">Description</label>
             <textarea
               name="description"
               rows="3"
+              className="px-2 py-2 rounded-sm w-full text-black"
               placeholder="Write a simple descrpition..."
               onChange={handleChange}
               value={values.description}
             />
-            <button type="submit" disabled={isSubmitting}>
+            <button className='bg-green-400 px-4 py-2 rounded-md flex mx-auto' type="submit" disabled={isSubmitting}>
               { params.id ? "Update" : isSubmitting ? "Saving..." : "Save" }
             </button>
           </Form>
