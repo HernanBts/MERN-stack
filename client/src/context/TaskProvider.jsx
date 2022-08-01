@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from "react";
-import { getTasksRequest, getTaskRequest, deleteTaskRequest, createTaskRequest, updateTaskRequest } from "../api/tasks.api";
+import { useContext, useState } from "react";
+import { getTasksRequest, getTaskRequest, deleteTaskRequest, createTaskRequest, changeDoneTaskRequest, updateTaskRequest } from "../api/tasks.api";
 import { TaskContext } from './TaskContext'
 
 export const useTasks = () => {
@@ -46,12 +46,22 @@ export const TaskContextProvider = ({ children }) => {
     }
   };
 
-  const updateTask = async (taskId, values) => {
+  const updateTask = async (id, newData) => {
     try {
-      const response = await updateTaskRequest(taskId, values);
-      return response.data;
+      var response;
+      if (newData.hasOwnProperty('title')) 
+        response = await updateTaskRequest(id, newData);
+      else {
+        response = await changeDoneTaskRequest(id, newData);
+        setTasks(
+          tasks.map((task) =>
+            task.id === id ? { ...task, done: !task.done } : task
+          )
+        );
+      }
+      console.log(response)
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
